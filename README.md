@@ -98,7 +98,7 @@ docs [to see what they say.](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
 
 //#1
-const longWords = words.filter(() => word.length >= 7);
+const longWords = words.filter((word) => word.length >= 7);
 
 //#2
 const longWords = words.filter(function(word) {
