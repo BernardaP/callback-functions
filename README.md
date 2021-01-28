@@ -34,6 +34,26 @@ function writeDing() {
 let timerId = setTimeout(writeDing(), 3000);
 ```
 
+There should be a couple things that tip us off to what's going on with the bug:
+
+Let's take a look at what's written. setTimeout isn't defined, but also looks like
+
+a function (because it is)
+.
+If we look up (setTimeout())[https://www.w3schools.com/jsref/met_win_settimeout.asp], we'll see the usage of it.
+
+```
+const writeDing = () => {
+  console.log('Ding!');
+  }
+
+let timerId = setTimeout(writeDing, 3000);
+```
+
+So why no parens someone might be asking? We want 3000 miliseconds to pass
+
+and then we want the writeDing function to execute.
+
 ```js
 // Exercise 2
 
@@ -52,9 +72,22 @@ const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
 // The sort method sorts "in place", that is, it modifies the array
 words.sort(/* pass in a named callback here */);
 
+words.sort(sortShortLong)
+
 // Check that logging words now outputs
 // ["nice", "short", "medium", "lengthy", "delicious"]
+
+console.log(words)
+
+const sortShortLong = (a, b) => {
+    a.length - b.length
+}
+
 ```
+
+Okay, cool, how did we get here? Well, let's check out the .sort()
+
+docs (to see what they say.)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort]
 
 ```js
 // Exercise 3
@@ -63,7 +96,14 @@ words.sort(/* pass in a named callback here */);
 // named longWords that includes only the words with 7 or more
 // characters
 
-const longWords = words.filter(/* write an anonymous inline function here */);
+
+const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
+
+const longWords = words.filter(() => word.length >= 7);
+
+const longWords = words.filter(function(word) {
+  return word.length >= 7;
+});
 
 // Check that logging longWords outputs
 // ["lengthy", "delicious"]
@@ -81,15 +121,22 @@ const longWords = words.filter(/* write an anonymous inline function here */);
 // Test with this array
 const colors = ['red', 'green', 'blue', 'purple'];
 // and this callback
-function log(elem, idx) {
+const log = (elem, idx) => {
   console.log(`Index: ${idx} / Element Value: ${elem}`);
 }
-
 // calling forEach(colors, log) should resulting in this output:
 // Index: 0 / Element Value: red
 // Index: 1 / Element Value: green
 // Index: 2 / Element Value: blue
 // Index: 3 / Element Value: purple
+
+const forEach = (array, callback) => {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i);
+  }
+}
+
+forEach(colors, log);
 ```
 
 ```js
@@ -129,6 +176,29 @@ STEP 1 COMPLETE
 STEP 2 COMPLETE
 STEP 3 COMPLETE
 FINISHED
+
+Two ways to do this, we can store it in a function, or we can execute the functions in one go.
+
+```
+const allSteps = () => {
+  step1(() => {
+     step2(() => {
+       step3(() => {
+         console.log("FINISHED")
+      )}
+    )}
+  )}
+}
+```
+```
+step1(() => {
+  step2(() => {
+    step3(() => {
+      console.log("FINISHED");
+    )}
+  )}
+)};
+```
 
 Hints: 
 - Call `step1` first.
