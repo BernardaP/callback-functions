@@ -38,8 +38,8 @@ There should be a couple things that tip us off to what's going on with the bug:
 
 Let's take a look at what's written. setTimeout isn't defined, but also looks like
 
-a function (because it is)
-.
+a function (because it is).
+
 If we look up [setTimeout()](https://www.w3schools.com/jsref/met_win_settimeout.asp), we'll see the usage of it.
 
 ```
@@ -51,7 +51,6 @@ let timerId = setTimeout(writeDing, 3000);
 ```
 
 So why no parens someone might be asking? We want 3000 miliseconds to pass
-
 and then we want the writeDing function to execute.
 
 ```js
@@ -70,18 +69,17 @@ and then we want the writeDing function to execute.
 const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
 
 // The sort method sorts "in place", that is, it modifies the array
-words.sort(/* pass in a named callback here */);
+//words.sort(/* pass in a named callback here */);
 
-words.sort(sortShortLong)
-
-// Check that logging words now outputs
-// ["nice", "short", "medium", "lengthy", "delicious"]
-
-console.log(words)
+const words = ["nice", "short", "medium", "lengthy", "delicious"]
 
 const sortShortLong = (a, b) => {
     a.length - b.length
 }
+
+words.sort(sortShortLong)
+
+console.log(words)
 
 ```
 
@@ -99,8 +97,10 @@ docs [to see what they say.](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 
 const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
 
+//#1
 const longWords = words.filter(() => word.length >= 7);
 
+//#2
 const longWords = words.filter(function(word) {
   return word.length >= 7;
 });
