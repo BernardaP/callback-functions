@@ -34,6 +34,25 @@ function writeDing() {
 let timerId = setTimeout(writeDing(), 3000);
 ```
 
+There should be a couple things that tip us off to what's going on with the bug:
+
+Let's take a look at what's written. setTimeout isn't defined, but also looks like
+
+a function (because it is).
+
+If we look up [setTimeout()](https://www.w3schools.com/jsref/met_win_settimeout.asp), we'll see the usage of it.
+
+```
+const writeDing = () => {
+  console.log('Ding!');
+  }
+
+let timerId = setTimeout(writeDing, 3000);
+```
+
+So why no parens someone might be asking? We want 3000 miliseconds to pass
+and then we want the writeDing function to execute.
+
 ```js
 // Exercise 2
 
@@ -50,10 +69,54 @@ let timerId = setTimeout(writeDing(), 3000);
 const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
 
 // The sort method sorts "in place", that is, it modifies the array
-words.sort(/* pass in a named callback here */);
+//words.sort(/* pass in a named callback here */);
 
-// Check that logging words now outputs
-// ["nice", "short", "medium", "lengthy", "delicious"]
+const words = ["nice", "short", "medium", "lengthy", "delicious"]
+
+const sortShortLong = (a, b) => {
+    return a.length - b.length
+}
+
+words.sort(sortShortLong)
+
+console.log(words)
+
+```
+
+Okay, cool, how did we get here? Well, let's check out the .sort()
+
+docs [to see what they say.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+
+```
+arr.sort([compareFunction])
+
+sort will compare each index of an array and run a comparison
+function against it.
+
+So we can take an array
+
+let numbers = [5, 3, 1, 2, 4]
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+numbers.sort(compareNumbers) => [1, 2, 3, 4, 5]
+
+Doesn't tell us much, so let's make a little spicier.
+
+const numbers = [5, 3, 1, 4, 2]
+
+function compareNumbersShow(a, b){
+    console.log(`a is equal to ${a}`)
+    console.log(`b is equal to ${b}`)
+    console.log(`${a} minus ${b} is equal to ${a - b}`)
+    return a - b
+}
+
+numbers.sort(compareNumbersShow)
+
+Watch the magic go.
 ```
 
 ```js
@@ -63,10 +126,33 @@ words.sort(/* pass in a named callback here */);
 // named longWords that includes only the words with 7 or more
 // characters
 
-const longWords = words.filter(/* write an anonymous inline function here */);
+
+const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
+
+//#1
+const longWords = words.filter((word) => word.length >= 7);
+
+//#2
+const longWords = words.filter(function(word) {
+  return word.length >= 7;
+});
 
 // Check that logging longWords outputs
 // ["lengthy", "delicious"]
+```
+Okay, coool. So how does this work?
+Let's check out...
+
+```
+let newArray = arr.filter(callback(currentValue[, index[, array]]) {
+  // return element for newArray, if true
+}[, thisArg]);
+
+filter takes a callback function. What does it do?
+
+filter() calls a provided callback function once for each element in an array, 
+and constructs a new array of all the values for which callback returns a value 
+that coerces to true. 
 ```
 
 ```js
@@ -78,18 +164,25 @@ const longWords = words.filter(/* write an anonymous inline function here */);
 //		3. Code the forEach method such that it iterates over each element in the array arg (use a for loop).
 //		4. For each iteration, invoke the callback arg, passing to it, the element and the index of the element.
 
-// Test with this array
-const colors = ['red', 'green', 'blue', 'purple'];
-// and this callback
-function log(elem, idx) {
-  console.log(`Index: ${idx} / Element Value: ${elem}`);
-}
-
 // calling forEach(colors, log) should resulting in this output:
 // Index: 0 / Element Value: red
 // Index: 1 / Element Value: green
 // Index: 2 / Element Value: blue
 // Index: 3 / Element Value: purple
+
+const colors = ['red', 'green', 'blue', 'purple'];
+
+const forEach = (array, callback) => {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i);
+  }
+}
+
+const log = (elem, idx) => {
+  console.log(`Index: ${idx} / Element Value: ${elem}`);
+}
+
+forEach(colors, log);
 ```
 
 ```js
@@ -129,6 +222,28 @@ STEP 1 COMPLETE
 STEP 2 COMPLETE
 STEP 3 COMPLETE
 FINISHED
+
+Two ways to do this, we can store it in a function, or we can execute the functions in one go.
+
+
+const allSteps = () => {
+  step1(() => {
+     step2(() => {
+       step3(() => {
+         console.log("FINISHED")
+      )}
+    )}
+  )}
+}
+
+step1(() => {
+  step2(() => {
+    step3(() => {
+      console.log("FINISHED");
+    )}
+  )}
+)};
+
 
 Hints: 
 - Call `step1` first.
