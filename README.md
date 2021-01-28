@@ -40,7 +40,7 @@ Let's take a look at what's written. setTimeout isn't defined, but also looks li
 
 a function (because it is)
 .
-If we look up (setTimeout())[https://www.w3schools.com/jsref/met_win_settimeout.asp], we'll see the usage of it.
+If we look up [setTimeout()](https://www.w3schools.com/jsref/met_win_settimeout.asp), we'll see the usage of it.
 
 ```
 const writeDing = () => {
@@ -87,7 +87,7 @@ const sortShortLong = (a, b) => {
 
 Okay, cool, how did we get here? Well, let's check out the .sort()
 
-docs (to see what they say.)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort]
+docs [to see what they say.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 ```js
 // Exercise 3
