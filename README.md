@@ -179,7 +179,7 @@ FINISHED
 
 Two ways to do this, we can store it in a function, or we can execute the functions in one go.
 
-```
+
 const allSteps = () => {
   step1(() => {
      step2(() => {
@@ -189,8 +189,7 @@ const allSteps = () => {
     )}
   )}
 }
-```
-```
+
 step1(() => {
   step2(() => {
     step3(() => {
@@ -198,7 +197,7 @@ step1(() => {
     )}
   )}
 )};
-```
+
 
 Hints: 
 - Call `step1` first.
