@@ -74,7 +74,7 @@ const words = ['short', 'medium', 'delicious', 'nice', 'lengthy'];
 const words = ["nice", "short", "medium", "lengthy", "delicious"]
 
 const sortShortLong = (a, b) => {
-    a.length - b.length
+    return a.length - b.length
 }
 
 words.sort(sortShortLong)
