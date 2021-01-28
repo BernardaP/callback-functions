@@ -87,6 +87,38 @@ Okay, cool, how did we get here? Well, let's check out the .sort()
 
 docs [to see what they say.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
+```
+arr.sort([compareFunction])
+
+sort will compare each index of an array and run a comparison
+function against it.
+
+So we can take an array
+
+let numbers = [5, 3, 1, 2, 4]
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+numbers.sort(compareNumbers) => [1, 2, 3, 4, 5]
+
+Doesn't tell us much, so let's make a little spicier.
+
+const numbers = [5, 3, 1, 4, 2]
+
+function compareNumbersShow(a, b){
+    console.log(`a is equal to ${a}`)
+    console.log(`b is equal to ${b}`)
+    console.log(`${a} minus ${b} is equal to ${a - b}`)
+    return a - b
+}
+
+numbers.sort(compareNumbersShow)
+
+Watch the magic go.
+```
+
 ```js
 // Exercise 3
 //
@@ -107,6 +139,20 @@ const longWords = words.filter(function(word) {
 
 // Check that logging longWords outputs
 // ["lengthy", "delicious"]
+```
+Okay, coool. So how does this work?
+Let's check out...
+
+```
+let newArray = arr.filter(callback(currentValue[, index[, array]]) {
+  // return element for newArray, if true
+}[, thisArg]);
+
+filter takes a callback function. What does it do?
+
+filter() calls a provided callback function once for each element in an array, 
+and constructs a new array of all the values for which callback returns a value 
+that coerces to true. 
 ```
 
 ```js
