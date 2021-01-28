@@ -42,6 +42,12 @@ console.log("<------ QUESTION THREE ------>")
 const longWordsArrow = words.filter((word) => word.length >= 7);
 // function callback
 const longwords = words.filter(function(word) {
+  // console.log(word.length)
+  // if(word.length >= 7){
+  //   console.log(true)
+  // } else {
+  //   console.log(false)
+  // }
   return word.length >= 7
 })
 
