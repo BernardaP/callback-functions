@@ -122,7 +122,7 @@ console.log("<------ BONUS QUESTION ------>")
 const countdown = (seconds) => {
   let timer = setInterval(() => {
     console.log("Count: " + seconds)
-    if(seconds <= 1){
+    if(seconds <= 0){
       clearInterval(timer)
     } else {
       seconds--
