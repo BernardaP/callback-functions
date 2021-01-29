@@ -40,14 +40,19 @@ console.log("<------ QUESTION THREE ------>")
 
 // 1 line arrow function (w/ implicit return)
 const longWordsArrow = words.filter((word) => word.length >= 7);
+
 // function callback
+// uncomment the blocked scope to see what words.filter(function(word)
+// technically does. It will only return 'true' values.
+
 const longwords = words.filter(function(word) {
-  // console.log(word.length)
+  // console.log(word)
   // if(word.length >= 7){
   //   console.log(true)
   // } else {
   //   console.log(false)
   // }
+  // only true values will be returned
   return word.length >= 7
 })
 
