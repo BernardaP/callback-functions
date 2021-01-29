@@ -53,6 +53,8 @@ const longwords = words.filter(function(word) {
 
 console.log(longwords)
 
+console.log("<------ QUESTION FOUR ------>")
+
 const colors = ['red', 'green', 'blue', 'purple'];
 
 const forEach = (array, callback) => {
@@ -69,6 +71,7 @@ console.log(forEach(colors, log))
 
 console.log(colors.forEach(log))
 
+console.log("<------ QUESTION FIVE ------>")
 
 function step1(cb) {
   setTimeout(function() {
@@ -113,7 +116,7 @@ console.log("<------ BONUS QUESTION ------>")
 
 const countdown = (seconds) => {
   let timer = setInterval(() => {
-    console.log("Count:" + seconds)
+    console.log("Count: " + seconds)
     if(seconds <= 1){
       clearInterval(timer)
     } else {
